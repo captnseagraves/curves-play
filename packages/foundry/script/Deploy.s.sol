@@ -2,6 +2,7 @@
 pragma solidity ^0.8.19;
 
 import "../contracts/YourContract.sol";
+import "../contracts/NonFungibleFriends.sol";
 import "./DeployHelpers.s.sol";
 
 contract DeployScript is ScaffoldETHDeploy {
@@ -18,9 +19,19 @@ contract DeployScript is ScaffoldETHDeploy {
 
         YourContract yourContract =
             new YourContract(vm.addr(deployerPrivateKey));
+        NonFungibleFriends nonFungibleFriends = new NonFungibleFriends(
+            vm.addr(deployerPrivateKey)
+        );
         console.logString(
             string.concat(
-                "YourContract deployed at: ", vm.toString(address(yourContract))
+                "YourContract deployed at: ",
+                vm.toString(address(yourContract))
+            )
+        );
+        console.logString(
+            string.concat(
+                "NonFungibleFriends deployed at: ",
+                vm.toString(address(nonFungibleFriends))
             )
         );
 
